@@ -3,6 +3,7 @@ import { PizzasModule } from './modules/pizzas.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 const port = 3000;
+const url = `http://localhost:${port}`;
 async function bootstrap() {
   const app = await NestFactory.create(PizzasModule);
 
@@ -14,7 +15,8 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
-  console.log(`app listening on http://localhost:${port}`);
+  console.log(`app listening on ${url}`);
+  console.log(`Swagger documentation found on ${url}/api`);
   await app.listen(port);
 }
 bootstrap();
